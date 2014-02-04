@@ -67,7 +67,8 @@ class Event extends CI_Model {
 				'clientdate' => $event->time,
 				'num'=> isset($event->acc)?$event->acc:1,
 				'event'=>$event->activity,
-			    'version'=>isset($event->version)?$event->version:''
+			    'version'=>isset($event->version)?$event->version:'',
+				'deviceid'=> $event->device_identifier
 		);
 		$this->redis->lpush("razor_events", serialize($data));
 		$key = "razor_r_p_e_".$product_id."_".$event_identifier."_". date('Y-m-d-H-i', time());

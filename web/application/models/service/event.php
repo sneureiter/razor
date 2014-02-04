@@ -64,7 +64,7 @@ class Event extends CI_Model {
 					$nowtime = date('Y-m-d H:i:s');
 				}
 			}
-			$data = array('productkey' => $event -> appkey, 'event_id' => $getEventid, 'label' => isset($event -> label) ? $event -> label : '', 'clientdate' => $nowtime, 'num' => isset($event -> acc) ? $event -> acc : 1, 'event' => $event -> activity, 'version' => isset($event -> version) ? $event -> version : '');
+			$data = array('productkey' => $event -> appkey, 'event_id' => $getEventid, 'label' => isset($event -> label) ? $event -> label : '', 'clientdate' => $nowtime, 'num' => isset($event -> acc) ? $event -> acc : 1, 'event' => $event -> activity, 'version' => isset($event -> version) ? $event -> version : '', 'deviceid' => isset($event -> device_identifier) ? $event -> device_identifier : '', 'sessionid' => isset($event -> session_identifier) ? $event -> session_identifier : '' );
 
 			$this -> db -> insert('eventdata', $data);
 			return $getEventid;

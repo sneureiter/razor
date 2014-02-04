@@ -32,11 +32,12 @@ class Ums extends CI_Controller {
         $this -> load -> model($servicePrefix . '/onlineconfig', 'onlineconfig');
         $this -> load -> model($servicePrefix . '/uploadlog', 'uploadlog');
         $this -> load -> model($servicePrefix . '/usertag', 'usertag');
+        $this -> load -> model($servicePrefix . '/touchevent', 'touchevent');
     }
 
     /*
      * Interface to accept event log by client
-     * Must pass parameters:appkey,event_identifier,time,activity,version
+     * Must pass parameters:appkey,event_identifier,time,activity,version,device_identifier, session_identifier
      */
     function postEvent() {
         $this -> load -> model('servicepublicclass/eventpublic', 'eventpublic');
@@ -52,7 +53,7 @@ class Ums extends CI_Controller {
         $content = json_decode($encoded_content);
         $event = new eventpublic();
         $event -> loadevent($content);
-        $retParamsCheck = $this -> utility -> isPraramerValue($content, $array = array('appkey', 'event_identifier', 'time', 'activity', 'version'));
+        $retParamsCheck = $this -> utility -> isPraramerValue($content, $array = array('appkey', 'event_identifier', 'time', 'activity', 'version', "device_identifier", "session_identifier"));
 
         if ($retParamsCheck['flag'] <= 0) {
             $ret = array('flag' => -2, 'msg' => $retParamsCheck['msg']);
@@ -360,6 +361,48 @@ class Ums extends CI_Controller {
             }
             echo json_encode($ret);
         }
+    }
+    
+    function postTouchEvent() {
+    	$this -> load -> model('servicepublicclass/toucheventpublic', 'toucheventpublic');
+    	if (!isset($_POST["content"])) {
+    	
+    		$ret = array('flag' => -3, 'msg' => 'Invalid content.');
+    		echo json_encode($ret);
+    		return;
+    	}
+    	
+    	$encoded_content = $_POST["content"];
+    	log_message("debug", $encoded_content);
+    	$content = json_decode($encoded_content);
+    	$event = new toucheventpublic();
+    	$event -> loadtouchevent($content);
+    	$retParamsCheck = $this -> utility -> isPraramerValue($content, $array = array('time', 'activity', 'appkey', 'device_identifier', 'xcoordinate', 'ycoordinate', 'object', 'session_identifier'));
+    	
+    	if ($retParamsCheck['flag'] <= 0) {
+    		$ret = array('flag' => -2, 'msg' => $retParamsCheck['msg']);
+    		echo json_encode($ret);
+    		return;
+    	}
+    	$key = $event -> appkey;
+    	$isKeyAvailable = $this -> utility -> isKeyAvailale($key);
+    	if (!$isKeyAvailable) {
+    		$ret = array('flag' => -1, 'msg' => 'NotAvailable appkey ');
+    		echo json_encode($ret);
+    		return;
+    	} else {
+    		$isgetEventid = $this -> touchevent -> addTouchEvent($content);
+    		if (!$isgetEventid) {
+    			$ret = array('flag' => -5, 'msg' => 'event_identifier not defined in product with provided appkey');
+    			echo json_encode($ret);
+    			return;
+    		} else {
+    			$ret = array('flag' => 1, 'msg' => 'ok');
+    		}
+    		$ret = array('flag' => 1, 'msg' => 'ok');
+    		echo json_encode($ret);
+    	}
+
     }
 
 }

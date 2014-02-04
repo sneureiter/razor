@@ -58,6 +58,8 @@ public class AssembJSONObj {
             localJSONObject.put("event_identifier", event.getEvent_id());
             localJSONObject.put("appkey", event.getAppkey());
             localJSONObject.put("activity", event.getActivity());
+            localJSONObject.put("device_identifier", event.getDevice_id());
+            localJSONObject.put("session_identifier", event.getSession_id());
             // localJSONObject.put(UserIdentifier,
             // CommonUtil.getUserIdentifier(context));
             if (event.getLabel() != null)

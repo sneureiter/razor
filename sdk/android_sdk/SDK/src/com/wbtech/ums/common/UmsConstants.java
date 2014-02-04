@@ -18,7 +18,7 @@ public class UmsConstants {
     public static final Object saveOnlineConfigMutex = new Object();
     public static final String eventUrl="/ums/postEvent";
     public static final String errorUrl = "/ums/postErrorLog";
-    public static final String clientDataUrl = "/ums/postClientData";
+    public static final String clientDataUrl = "/ums/";
     public static final String updataUrl = "/ums/getApplicationUpdate";
     public static final String activityUrl = "/ums/postActivityLog";
     public static final String onlineConfigUrl ="/ums/getOnlineConfiguration";

@@ -15,6 +15,8 @@ public class PostObjEvent {
    private String version;
    private String  appkey;
    private Context context;
+   private String device_id;
+   private String session_id;
     
 
     public PostObjEvent( PostObjEvent event) {
@@ -31,7 +33,7 @@ public class PostObjEvent {
         
     }
 
-    public PostObjEvent(String event_id, String label, String acc,Context context) {
+    public PostObjEvent(String event_id, String label, String acc,Context context, String session_id) {
         super();
         this.event_id = event_id;
         this.label = label;
@@ -41,11 +43,13 @@ public class PostObjEvent {
         this.activity = CommonUtil.getActivityName(context);
         this.appkey = CommonUtil.getAppKey(context);
         this.version = CommonUtil.getVersion(context);
+        this.device_id = CommonUtil.getDeviceID(context);
+        this.session_id = session_id;
         
     }
 
     public PostObjEvent(String event_id, String label, String acc, String time, String activity,
-            String version, String appkey) {
+            String version, String appkey, String session_id) {
         super();
         this.event_id = event_id;
         this.label = label;
@@ -54,6 +58,8 @@ public class PostObjEvent {
         this.activity = activity;
         this.version = version;
         this.appkey = appkey;
+        this.device_id = CommonUtil.getDeviceID(context);
+        this.session_id = session_id;
     }
 
     public boolean verification() {
@@ -120,6 +126,20 @@ public class PostObjEvent {
     public void setAcc(String acc) {
         this.acc = acc;
     }
+    public String getDevice_id() {
+        return device_id;
+    }
+
+    public void setDevice_id(String device_id) {
+        this.device_id = device_id;
+    }
+    public String getSession_id() {
+        return session_id;
+    }
+
+    public void setSession_id(String session_id) {
+        this.session_id = session_id;
+    }
 
     @Override
     public int hashCode() {
@@ -132,6 +152,8 @@ public class PostObjEvent {
         result = prime * result + ((label == null) ? 0 : label.hashCode());
         result = prime * result + ((time == null) ? 0 : time.hashCode());
         result = prime * result + ((version == null) ? 0 : version.hashCode());
+        result = prime * result + ((device_id == null) ? 0 : device_id.hashCode());
+        result = prime * result + ((session_id == null) ? 0 : session_id.hashCode());
         return result;
     }
 
@@ -178,6 +200,16 @@ public class PostObjEvent {
             if (other.version != null)
                 return false;
         } else if (!version.equals(other.version))
+            return false;
+        if (device_id == null) {
+            if (other.device_id != null)
+                return false;
+        } else if (!device_id.equals(other.device_id))
+            return false;
+        if (session_id == null) {
+            if (other.session_id != null)
+                return false;
+        } else if (!session_id.equals(other.session_id))
             return false;
         return true;
     }

@@ -38,6 +38,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -243,7 +244,7 @@ public class UmsAgent {
 
             @Override
             public void run() {
-                EventController.postEventInfo(handler,context,new PostObjEvent( event_id, label, acc + "",context));
+                EventController.postEventInfo(handler,context,new PostObjEvent( event_id, label, acc + "",context, session_id));
             }
         };
         handler.post(postEventRunnable);
@@ -256,8 +257,20 @@ public class UmsAgent {
             localHandlerThread.start();
             handler = new Handler(localHandlerThread.getLooper());
         }
-        EventController.postEventInfo(handler,context, new PostObjEvent(event_id, null, acc + "",context));
+        EventController.postEventInfo(handler,context, new PostObjEvent(event_id, null, acc + "",context, session_id));
     }
+    
+//    public static void onTouchEvent(final Context context, final MotionEvent event,
+//            final int acc) {
+//        Runnable postEventRunnable = new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                EventController.postEventInfo(handler,context,new PostObjTouchEvent( event_id, label, acc + "",context, session_id));
+//            }
+//        };
+//        handler.post(postEventRunnable);
+//    }
 
     public static void onPause(final Context context) {
         Runnable postOnPauseinfoRunnable = new Runnable() {
@@ -708,7 +721,7 @@ public class UmsAgent {
 
             @Override
             public void run() {
-                postClientDatas(context);
+            	postClientDatas(context);
             }
         };
         handler.post(postClientDataRunnable);

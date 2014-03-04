@@ -625,7 +625,7 @@ $lang['v_man_au_failDelete'] = "Failed to delete the App, make sure you have del
 $lang['v_man_au_editSuccess'] = 'Edit Successful';
 $lang['v_man_au_appName'] = "App Name";
 $lang['v_man_au_deleteAppS'] = "The App is deleted successfully.";
-$lang['v_man_au_addSuccess'] = 'Add Successful';
+$lang['v_man_au_addSuccess'] = 'App was created successfully';
 $lang['v_man_au_versionError']="Version Type is wrong.";
 //view---manage---autoupdate-info
 

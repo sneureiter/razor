@@ -6,6 +6,7 @@ import android.os.Build;
 
 import com.wbtech.ums.objects.PostObjEvent;
 import com.wbtech.ums.objects.PostObjTag;
+import com.wbtech.ums.objects.PostObjTouchEvent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,6 +73,32 @@ public class AssembJSONObj {
             localJSONException.printStackTrace();
         }
         return localJSONObject;
+    }
+    
+    public static JSONObject getTouchEventJSONobj(PostObjTouchEvent event) {
+    	
+    	
+    	JSONObject localJSONObject = new JSONObject();
+    	try {
+    		localJSONObject.put("time", event.getTime());
+    		localJSONObject.put("activity", event.getActivity());
+    		localJSONObject.put("acc", event.getAcc());
+    		localJSONObject.put("appkey", event.getAppkey());
+    		localJSONObject.put("xcoordinate", event.getXcoordiante());
+    		localJSONObject.put("ycoordinate", event.getYcoordiante());
+    		localJSONObject.put("device_identifier", event.getDevice_id());
+    		localJSONObject.put("session_identifier", event.getSession_id());
+    		localJSONObject.put("event", event.getEvent());
+    		//array = array('time', 'activity', 'appkey', 'device_identifier', 'xcoordinate', 'ycoordinate', 'object', 'session_identifier'
+    		
+    		
+    		
+    	} catch (JSONException localJSONException) {
+    		CommonUtil.printLog("UmsAgent", "json error in getTouchEventJSONobj(...)");
+    		localJSONException.printStackTrace();
+    	}
+    	
+    	return localJSONObject;
     }
     
 

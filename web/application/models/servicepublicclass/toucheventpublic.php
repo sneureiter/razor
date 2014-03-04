@@ -17,9 +17,9 @@ class toucheventpublic extends CI_Model {
         $this -> acc = isset($content -> acc) ? $content -> acc : 1;
         $this -> xcoordinate = isset($content -> xcoordinate) ? $content -> xcoordinate : '';
         $this -> ycoordinate = isset($content -> ycoordinate) ? $content -> ycoordinate : '';
-        $this -> object = $content -> object;
 		$this -> device_identifier = isset($content -> device_identifier) ? $content -> device_identifier : '';
 		$this -> session_identifier = isset($content -> session_identifier) ? $content -> session_identifier : '';
+		$this -> event = "test";# isset($content -> event) ? $content -> event : '';
 
     }
 

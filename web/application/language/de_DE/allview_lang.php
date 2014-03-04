@@ -571,7 +571,7 @@ $lang['v_man_au_failDelete'] = "Failed to delete the App, make sure you have del
 $lang['v_man_au_editSuccess'] = 'Erfolgreich bearbeitet ';
 $lang['v_man_au_appName'] = "App Name";
 $lang['v_man_au_deleteAppS'] = "Die App wurde erfolgreich gelöscht.";
-$lang['v_man_au_addSuccess'] = 'Erfolgreich hinzugefügt';
+$lang['v_man_au_addSuccess'] = 'Applikation wurde erfolgreich hinzugefügt';
 $lang['v_man_au_versionFehler']="Version Typ ist falsch.";
 //view---manage---autoupdate-info
 

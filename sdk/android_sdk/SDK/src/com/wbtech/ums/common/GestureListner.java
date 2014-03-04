@@ -1,6 +1,8 @@
 package com.wbtech.ums.common;
 
 
+import com.wbtech.ums.UmsAgent;
+
 import android.view.*;
 
 class GestureListener extends GestureDetector.SimpleOnGestureListener {
@@ -19,6 +21,7 @@ class GestureListener extends GestureDetector.SimpleOnGestureListener {
 	@Override
 	public void onShowPress(MotionEvent ev) {
 		currentGestureDetected = ev.toString();
+		
 
 	}
 
@@ -39,6 +42,8 @@ class GestureListener extends GestureDetector.SimpleOnGestureListener {
 	@Override
 	public boolean onDown(MotionEvent ev) {
 		currentGestureDetected = ev.toString();
+		ev.getY();
+		ev.getX();
 
 		return true;
 	}

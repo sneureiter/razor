@@ -50,11 +50,13 @@ import com.wbtech.ums.common.NetworkUitlity;
 import com.wbtech.ums.common.UmsConstants;
 import com.wbtech.ums.controller.EventController;
 import com.wbtech.ums.controller.TagController;
+import com.wbtech.ums.controller.TouchEventController;
 import com.wbtech.ums.dao.GetInfoFromFile;
 import com.wbtech.ums.dao.SaveInfo;
 import com.wbtech.ums.objects.LatitudeAndLongitude;
 import com.wbtech.ums.objects.MyMessage;
 import com.wbtech.ums.objects.PostObjEvent;
+import com.wbtech.ums.objects.PostObjTouchEvent;
 import com.wbtech.ums.objects.SCell;
 
 public class UmsAgent {
@@ -251,6 +253,39 @@ public class UmsAgent {
     }
 
    
+    public static void onTouchEvent(Context context,  int acc, int xcoordinate, int ycoordinate, String event) {
+        if(handler==null){
+            HandlerThread localHandlerThread = new HandlerThread("UmsAgent");
+            localHandlerThread.start();
+            handler = new Handler(localHandlerThread.getLooper());
+        }
+        TouchEventController.postTouchEventInfo(handler,context, new PostObjTouchEvent(context, acc + "", xcoordinate, ycoordinate, session_id, event));
+        //(Context context, String acc, int xcoordinate, 
+		//int ycoordinate,  String device_id, String session_id, String event) {
+    }
+    
+    public static void onTouchEvent(final Context context, final float xcoordinate, final float ycoordinate, final String event) {
+        Runnable postEventInfo = new Runnable() {
+            public void run() {
+            	onTouchEvent(context, "label", 1, xcoordinate, ycoordinate, event);
+            }
+        };
+        handler.post(postEventInfo);
+    }
+
+    public static void onTouchEvent(final Context context, final String label,
+            final int acc, final float xcoordinate, final float ycoordinate, final String event) {
+        Runnable postEventRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+            	TouchEventController.postTouchEventInfo(handler,context, new PostObjTouchEvent(context, acc + "", xcoordinate, ycoordinate, session_id, event));
+            }
+        };
+        handler.post(postEventRunnable);
+    }
+
+   
     public static void onEvent(Context context, String event_id, int acc) {
         if(handler==null){
             HandlerThread localHandlerThread = new HandlerThread("UmsAgent");
@@ -259,19 +294,6 @@ public class UmsAgent {
         }
         EventController.postEventInfo(handler,context, new PostObjEvent(event_id, null, acc + "",context, session_id));
     }
-    
-//    public static void onTouchEvent(final Context context, final MotionEvent event,
-//            final int acc) {
-//        Runnable postEventRunnable = new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                EventController.postEventInfo(handler,context,new PostObjTouchEvent( event_id, label, acc + "",context, session_id));
-//            }
-//        };
-//        handler.post(postEventRunnable);
-//    }
-
     public static void onPause(final Context context) {
         Runnable postOnPauseinfoRunnable = new Runnable() {
 

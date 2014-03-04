@@ -75,7 +75,7 @@ class Product extends CI_Controller {
             $category = $this -> input -> post('category');
             $description = $this -> input -> post('description');
             $key = $this -> product -> addProduct($userId, $appname, $channel, $platform, $category, $description);
-            $this -> common -> show_message(lang('v_man_au_addSuccess') . ",AppKey:$key," . anchor('/report/console', lang('v_man_pr_submitSuccessReturn')));
+            $this -> common -> show_message(lang('v_man_au_addSuccess') .  ", AppKey: $key, " . anchor('/report/console', lang('v_man_pr_submitSuccessReturn')));
             
         } else {
             $this -> data['platform'] = $this -> channel -> getplatform();

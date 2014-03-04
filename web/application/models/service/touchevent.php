@@ -66,7 +66,7 @@ class Touchevent extends CI_Model {
 			}
 			$data = array('productkey' => $event -> appkey, 'clientdate' => $nowtime, 'num' => isset($event -> acc) ? $event -> acc : 1, 'activity' => $event -> activity, 
 					'deviceid' => isset($event -> device_identifier) ? $event -> device_identifier : '', 'sessionid' => isset($event -> session_identifier) ? $event -> session_identifier : '',
-					'xcoordinate' => $event -> xcoordinate, 'ycoordinate' => $event -> ycoordinate, 'object' => $event -> object,  );
+					'xcoordinate' => $event -> xcoordinate, 'ycoordinate' => $event -> ycoordinate, 'event' => $event -> event,  );
 
 			$this -> db -> insert('toucheventdata', $data);
 			return 1;//$getEventid;

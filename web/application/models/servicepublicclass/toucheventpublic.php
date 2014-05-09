@@ -6,7 +6,7 @@ class toucheventpublic extends CI_Model {
     var $acc;
     var $xcoordinate;
     var $ycoordinate;
-    var $object;
+    var $eventid;
     var $device_identifier;
 	var $session_identifier;
 
@@ -17,9 +17,9 @@ class toucheventpublic extends CI_Model {
         $this -> acc = isset($content -> acc) ? $content -> acc : 1;
         $this -> xcoordinate = isset($content -> xcoordinate) ? $content -> xcoordinate : '';
         $this -> ycoordinate = isset($content -> ycoordinate) ? $content -> ycoordinate : '';
+        $this -> eventid = $content -> event;
 		$this -> device_identifier = isset($content -> device_identifier) ? $content -> device_identifier : '';
 		$this -> session_identifier = isset($content -> session_identifier) ? $content -> session_identifier : '';
-		$this -> event = "test";# isset($content -> event) ? $content -> event : '';
 
     }
 

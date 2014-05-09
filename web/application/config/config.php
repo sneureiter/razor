@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://razor.dev:8088';
+$config['base_url']	= 'http://localhost/web';
 
 /*
 |--------------------------------------------------------------------------
@@ -328,7 +328,7 @@ $config['compress_output'] = FALSE;
 |
 */
 $config['time_reference'] = 'local';
-$config['timezones'] = 'UP1';
+$config['timezones'] = 'UTC';
 
 /*
 |--------------------------------------------------------------------------

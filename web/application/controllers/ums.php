@@ -377,7 +377,7 @@ class Ums extends CI_Controller {
     	$content = json_decode($encoded_content);
     	$event = new toucheventpublic();
     	$event -> loadtouchevent($content);
-    	$retParamsCheck = $this -> utility -> isPraramerValue($content, $array = array('time', 'activity', 'appkey', 'device_identifier', 'xcoordinate', 'ycoordinate', 'object', 'session_identifier'));
+    	$retParamsCheck = $this -> utility -> isPraramerValue($content, $array = array('time', 'activity', 'appkey', 'device_identifier', 'xcoordinate', 'ycoordinate', 'session_identifier'));
     	
     	if ($retParamsCheck['flag'] <= 0) {
     		$ret = array('flag' => -2, 'msg' => $retParamsCheck['msg']);

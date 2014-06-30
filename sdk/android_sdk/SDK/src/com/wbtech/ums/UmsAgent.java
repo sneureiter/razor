@@ -789,7 +789,8 @@ public class UmsAgent {
             clientData.put("os_version", CommonUtil.getOsVersion(context));
             clientData.put("platform", "android");
             clientData.put("language", Locale.getDefault().getLanguage());
-            clientData.put("deviceid", tm.getDeviceId() == null ? "" : tm.getDeviceId());//
+            //clientData.put("deviceid", tm.getDeviceId() == null ? "" : tm.getDeviceId());//
+            clientData.put("deviceid",CommonUtil.getDeviceID(context));
             clientData.put("appkey", CommonUtil.getAppKey(context));
             clientData.put("resolution", displaysMetrics.widthPixels + "x"
                     + displaysMetrics.heightPixels);

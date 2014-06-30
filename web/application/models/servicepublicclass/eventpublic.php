@@ -9,6 +9,7 @@ class eventpublic extends CI_Model {
     var $version;
     var $device_identifier;
 	var $session_identifier;
+	var $fragment ;
 
     function loadevent($content) {
         $this -> event_identifier = $content -> event_identifier;
@@ -20,6 +21,7 @@ class eventpublic extends CI_Model {
         $this -> version = $content -> version;
 		$this -> device_identifier = isset($content -> device_identifier) ? $content -> device_identifier : '';
 		$this -> session_identifier = isset($content -> session_identifier) ? $content -> session_identifier : '';
+		$this -> fragment = $content -> fragment;
 
     }
 

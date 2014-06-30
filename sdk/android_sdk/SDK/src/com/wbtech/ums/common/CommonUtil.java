@@ -302,9 +302,14 @@ public class CommonUtil {
 		if (checkPermissions(context, "android.permission.READ_PHONE_STATE")) {
 			String deviceId = "";
 			if (checkPhoneState(context)) {
-				TelephonyManager tm = (TelephonyManager) context
-						.getSystemService(Context.TELEPHONY_SERVICE);
-				deviceId = tm.getDeviceId();
+//				TelephonyManager tm = (TelephonyManager) context
+//						.getSystemService(Context.TELEPHONY_SERVICE);
+//				deviceId = tm.getDeviceId();
+				
+				
+				//Fix for Android KitKat 4.4 Nexus 7
+				DeviceUuidFactory deviceUuidFactory = new DeviceUuidFactory(context);
+				deviceId = deviceUuidFactory.getDeviceUuid().toString();
 			}
 			if (deviceId != null) {
 				if (UmsConstants.DebugMode) {
